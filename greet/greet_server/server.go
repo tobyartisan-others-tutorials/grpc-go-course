@@ -9,7 +9,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-type server struct{}
+type server struct {
+	greetpb.UnimplementedGreetServiceServer
+}
 
 func main() {
 	fmt.Println("Hello world")
