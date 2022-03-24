@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 
+	"github.com/tobyartisan-others-tutorials/grpc-go-course/greet/greetpb"
 	"google.golang.org/grpc"
 )
 
