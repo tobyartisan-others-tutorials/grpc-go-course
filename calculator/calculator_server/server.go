@@ -14,13 +14,13 @@ type server struct {
 	calculatorpb.UnimplementedCalculatorServiceServer
 }
 
-func (*server) Sum(ctx context.Context, req *calculatorpb.CalculatorRequest) (*calculatorpb.CalculatorResponse, error) {
-	fmt.Printf("Sum function was invoked with %v\n", req)
-	num1 := req.GetNum1()
-	num2 := req.GetNum2()
-	result := num1 + num2
-	res := &calculatorpb.CalculatorResponse{
-		Result: result,
+func (*server) Sum(ctx context.Context, req *calculatorpb.SumRequest) (*calculatorpb.SumResponse, error) {
+	fmt.Printf("Received Sum RPDC: %v\n", req)
+	firstNumber := req.GetFirstNumber()
+	secondNumber := req.GetSecondNumber()
+	result := firstNumber + secondNumber
+	res := &calculatorpb.SumResponse{
+		SumResult: result,
 	}
 	return res, nil
 }
