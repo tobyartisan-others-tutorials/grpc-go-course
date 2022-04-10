@@ -25,6 +25,28 @@ func (*server) Sum(ctx context.Context, req *calculatorpb.SumRequest) (*calculat
 	return res, nil
 }
 
+func (*server) DecomposeToPrimeNumbers(req *calculatorpb.DecomposeToPrimeNumbersRequest, stream calculatorpb.CalculatorService_DecomposeToPrimeNumbersServer) error {
+	num := req.GetNumber()
+	var primes []int32
+
+	k := int32(2)
+	for num > 1 {
+		if num%k == 0 {
+			primes = append(primes, k)
+			num = num / k
+
+			res := &calculatorpb.DecomposeToPrimeNumbersResponse{
+				PrimeNumber: k,
+			}
+			stream.Send(res)
+		} else {
+			k = k + 1
+		}
+	}
+
+	return nil
+}
+
 func main() {
 	fmt.Println("Hello world")
 
