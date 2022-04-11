@@ -13,11 +13,11 @@ message SumResponse {
 }
 
 message DecomposeToPrimeNumbersRequest {
-    int32 number = 1;
+    int64 number = 1;
 }
 
 message DecomposeToPrimeNumbersResponse {
-    int32 prime_number = 1;
+    int64 prime_factor = 1;
 }
 
 service CalculatorService {

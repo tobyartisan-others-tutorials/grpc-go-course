@@ -26,21 +26,19 @@ func (*server) Sum(ctx context.Context, req *calculatorpb.SumRequest) (*calculat
 }
 
 func (*server) DecomposeToPrimeNumbers(req *calculatorpb.DecomposeToPrimeNumbersRequest, stream calculatorpb.CalculatorService_DecomposeToPrimeNumbersServer) error {
+	fmt.Printf("Received DecomposeToPrimeNumbers RPC: %v\n", req)
 	num := req.GetNumber()
-	var primes []int32
 
-	k := int32(2)
+	divisor := int64(2)
 	for num > 1 {
-		if num%k == 0 {
-			primes = append(primes, k)
-			num = num / k
-
-			res := &calculatorpb.DecomposeToPrimeNumbersResponse{
-				PrimeNumber: k,
-			}
-			stream.Send(res)
+		if num%divisor == 0 {
+			stream.Send(&calculatorpb.DecomposeToPrimeNumbersResponse{
+				PrimeFactor: divisor,
+			})
+			num = num / divisor
 		} else {
-			k = k + 1
+			divisor++
+			fmt.Printf("Divisor has increased to %v\n", divisor)
 		}
 	}
 
