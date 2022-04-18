@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+# Binaries of server and client
+bin
+
 # Test binary, built with `go test -c`
 *.test
 
@@ -13,3 +16,6 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Misc
+.DS_Store
